@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/defaultTemplate">
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>RateThat Login</title>
+
+	<style>
+		.form_field {
+			font-family: inherit;
+			width: 100%;
+			border: 0;
+			border-bottom: 2px solid #9b9b9b;
+			outline: 0;
+			font-size: 1.3rem;
+			color: black;
+			padding: 7px 0;
+			background: transparent;
+		}
+
+		.form__group {
+			position: relative;
+			padding: 15px 0 0;
+			margin-top: 10px;
+			width: 50%;
+			color: black;
+		}
+
+		.login {
+			font-family: 'Poppins', sans-serif;
+			display: flex;
+			flex-direction: column;
+			margin-top: 100px;
+			align-items: center;
+			min-height: 100vh;
+			font-size: 1.5rem;
+
+		}
+	</style>
+
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="login">
+			<div th:if="${param.error}">Invalid Username or Password.</div>
+			<form action="#" th:action="@{/items/display}" method="post">
+				<h1 style="color: #1f3c88;">Login to Get Started</h1><br /> <br />
+
+
+				<div class="form_group field">
+
+					<input placeholder="Username" type="text" class="form_field" name="username" id="username" required>
+
+
+					<input class="form_field" placeholder="Password" type="text" name="password" id="password"
+						required><br />
+				</div>
+
+
+				<br /><br />
+
+				<input type="submit" value="Login">
+
+			</form>
+		</div>
+	</div>
+
+</body>

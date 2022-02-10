@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layouts/loggedinTemplate">
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>RateThat Login</title>
+
+	<style>
+		.form_field {
+			font-family: inherit;
+			width: 100%;
+			border: 0;
+			border-bottom: 2px solid #9b9b9b;
+			outline: 0;
+			font-size: 1.3rem;
+			color: black;
+			padding: 7px 0;
+			background: transparent;
+		}
+
+		.form__group {
+			position: relative;
+			padding: 15px 0 0;
+			margin-top: 10px;
+			width: 50%;
+			color: black;
+		}
+
+		.addItem {
+			font-family: 'Poppins', sans-serif;
+			display: flex;
+			flex-direction: column;
+			margin-top: 100px;
+			align-items: center;
+			min-height: 100vh;
+			font-size: 1.5rem;
+
+		}
+	</style>
+
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="addItem">
+
+			<form action="#" th:action="@{/items/addItem(userId=${user.id})}"
+				th:object="${item}" method="post">
+				<h1 style="color: #1f3c88;">Add an Item</h1><br /> <br />
+
+				<div class="form_group field">
+					<input type="hidden" value="${userId}"/>
+					<input placeholder="Item name..." type="text" class="form_field" th:field="*{name}">
+					<br /><br />
+					<h5 style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Item Name Error
+					</h5>
+					</td>
+
+
+					<textarea rows="4" cols="50" placeholder="Item description..." th:field="*{description}" />
+					<br /><br />
+					<h5 style="color: red;" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+						Description Error</h5>
+
+				</div> <br /><br />
+
+				<input type="submit" value="Add Item">
+
+				<div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+				<div th:each="err : ${#fields.errors('*')}">
+					<span style="color:red" th:text="${err}" class="fieldError"></span>
+				</div>
+
+			</form>
+			<div style="margin-top: 30px;">
+				<form method="POST" th:action="@{/items/backToDisplay(userId=${user.id})}">
+					<button type="submit" style="border: none; background:none; color:red">Cancel</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
