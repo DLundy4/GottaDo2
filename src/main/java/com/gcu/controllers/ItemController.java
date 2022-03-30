@@ -2,6 +2,8 @@ package com.gcu.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.gcu.business.BusinessServiceInterface;
 import com.gcu.business.ItemBusinessServiceInterface;
+import com.gcu.business.ItemsRestService;
 import com.gcu.business.UserBusinessServiceInterface;
 import com.gcu.model.ItemModel;
 import com.gcu.model.UserModel;
@@ -22,6 +25,9 @@ import com.gcu.model.UserModel;
 @Controller
 @RequestMapping("/items")
 public class ItemController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ItemsRestService.class);
+	
 	@Autowired
 	BusinessServiceInterface<ItemModel> itemService;
 	@Autowired
@@ -40,6 +46,7 @@ public class ItemController {
 	 */
 	@PostMapping("/display")
 	public String display(Model model, UserModel user) {
+		logger.info("Info: User attempting log in with username: " + user.getUsername());
 		UserModel loggingInUser = customUserService.getUserByUsername(user.getUsername());
 		UserModel defaultUser = new UserModel();
 		if (loggingInUser.getUsername() == defaultUser.getUsername()) {
