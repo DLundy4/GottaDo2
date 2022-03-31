@@ -45,7 +45,7 @@
     </root>
  
     <!-- LOG "com.gcu" at TRACE level -->
-    <logger name="com.gcu" level="trace" additivity="false">
+    <logger name="com.gcu" level="info" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="GcuConsole" />
     </logger>

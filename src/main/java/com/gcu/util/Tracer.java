@@ -11,15 +11,10 @@ public class Tracer extends AbstractMonitoringInterceptor
 {
  	private static final long serialVersionUID = -5378974652504403928L;
 
-	public Tracer() 
-    {
-    }
+	public Tracer() {}
 
 	// If true will use the dynamic Spring logger
-    public Tracer(boolean useDynamicLogger) 
-    {
-    	setUseDynamicLogger(useDynamicLogger);
-    }
+    public Tracer(boolean useDynamicLogger) { setUseDynamicLogger(useDynamicLogger); }
 
     @Override
     protected Object invokeUnderTrace(MethodInvocation invocation, Log log) throws Throwable 
@@ -27,7 +22,7 @@ public class Tracer extends AbstractMonitoringInterceptor
     	// Before Method Invocation display a start method trace log statement
         String name = createInvocationTraceName(invocation);
         long start = System.currentTimeMillis();
-        log.trace("GCU Method " + name + " execution started at:" + new Date());
+        log.info("GCU Method " + name + " execution started at:" + new Date());
         try 
         {
         	// Invoke the method
