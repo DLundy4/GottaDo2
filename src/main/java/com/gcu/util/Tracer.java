@@ -33,10 +33,10 @@ public class Tracer extends AbstractMonitoringInterceptor
         	// After Method Invocation display an end method trace log statement
             long end = System.currentTimeMillis();
             long time = end - start;
-            log.trace("GCU Method " + name + " execution lasted:" + time + " ms");
-            log.trace("GCU Method " + name + " execution ended at:" + new Date());            
+            log.info("GCU Method " + name + " execution lasted:" + time + " ms");
+            log.info("GCU Method " + name + " execution ended at:" + new Date());            
             if (time > 10)
-                log.warn("GCU Method execution longer than 10 ms!");
+                log.info("GCU Method execution longer than 10 ms!");
         }
     }
 }

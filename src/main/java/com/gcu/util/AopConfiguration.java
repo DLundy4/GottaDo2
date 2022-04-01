@@ -14,9 +14,7 @@ public class AopConfiguration
 {
 	// Setup Pointcuts to the Controllers, Rest Controllers, Business Services, and Data Services
 	@Pointcut("execution(* com.gcu..controller..*(..)) || execution(* com.gcu..business..*(..)) || execution(* com.gcu..data..*(..))")
-	public void monitor()
-	{
-	}
+	public void monitor() {}
 
 	// Get an instance of the Tracer that will be used in the Aspect
 	@Bean
